@@ -1,8 +1,8 @@
 # AirVolume: Touchless System Control with Hand Gestures
 
-[cite_start]**Team Members:** Muhammad Rashad, Oviya, Girija, Dhanush [cite: 3]
-[cite_start]**Mentor:** Dr. D. Bhanu Prakash [cite: 7]
-[cite_start]**Platform:** Infosys Springboard [cite: 1]
+**Team Members:** Muhammad Rashad, Oviya, Girija, Dhanush
+**Mentor:** Dr. D. Bhanu Prakash
+**Platform:** Infosys Springboard
 
 ---
 ## 0.0 Flowchart
@@ -17,36 +17,36 @@
 ---
 
 ## 1. Executive Summary
-[cite_start]**AirVolume** is a Human-Computer Interaction (HCI) application designed to translate physical hand gestures into real-time digital system commands[cite: 10, 11]. [cite_start]By leveraging a standard webcam and the Windows Core Audio APIs, this project eliminates the need for physical peripherals, offering a touchless and intuitive control mechanism[cite: 12]. [cite_start]The system utilizes a computer vision pipeline to detect hand landmarks and interfaces directly with the operating system to adjust master volume levels[cite: 13, 14].
+**AirVolume** is a Human-Computer Interaction (HCI) application designed to translate physical hand gestures into real-time digital system commands.By leveraging a standard webcam and the Windows Core Audio APIs, this project eliminates the need for physical peripherals, offering a touchless and intuitive control mechanism.The system utilizes a computer vision pipeline to detect hand landmarks and interfaces directly with the operating system to adjust master volume levels.
 
 ---
 
 ## 2. Methodology: Agile Workflows
 To ensure the successful delivery of this complex system, the team coordinated **Agile workflows** across three distinct modules: Computer Vision Pipeline, User Interface (UI) Design, and Audio Integration.
 
-* [cite_start]**Iterative Development:** The project was executed in phases, moving from environment setup (Phase 1) to core logic construction (Phase 2), and finally to system verification (Phase 3) [cite: 32-38].
+**Iterative Development:** The project was executed in phases, moving from environment setup (Phase 1) to core logic construction (Phase 2), and finally to system verification (Phase 3)
 * **Cross-Functional Integration:** We synchronized the development of the Kivy dashboard with the backend logic, ensuring that the visual feedback (e.g., "Function Trace Debugger") matched the real-time backend execution logs .
-* [cite_start]**Documentation:** Continuous documentation of milestones allowed for efficient troubleshooting and knowledge transfer regarding system constraints, such as the specific requirement for Windows Core Audio APIs [cite: 478-479].
+**Documentation:** Continuous documentation of milestones allowed for efficient troubleshooting and knowledge transfer regarding system constraints, such as the specific requirement for Windows Core Audio APIs 
 
 ---
 
 ## 3. System Architecture
-[cite_start]The application follows a strictly defined three-step pipeline: **See, Understand, Act**[cite: 18].
+The application follows a strictly defined three-step pipeline: **See, Understand, Act**
 
 ### Phase 1: See (Image Acquisition)
-* [cite_start]**Input:** The system accesses the webcam using `cv2.VideoCapture(0)` to capture a stable video feed[cite: 20].
-* [cite_start]**Preprocessing:** Each frame is flipped horizontally using `cv2.flip(frame, 1)` to create a mirror-like interaction for the user [cite: 150-153].
-* [cite_start]**Tech Stack:** OpenCV (Computer Vision), NumPy (Matrix Operations)[cite: 29].
+**Input:** The system accesses the webcam using `cv2.VideoCapture(0)` to capture a stable video feed
+**Preprocessing:** Each frame is flipped horizontally using `cv2.flip(frame, 1)` to create a mirror-like interaction for the user
+**Tech Stack:** OpenCV (Computer Vision), NumPy (Matrix Operations)
 
 ### Phase 2: Understand (Gesture Recognition)
-[cite_start]Instead of building a hand detection model from scratch, we utilized **Google's MediaPipe** framework[cite: 13].
-* [cite_start]**Landmark Detection:** The system detects 21 key hand landmarks in real-time[cite: 14].
+Instead of building a hand detection model from scratch, we utilized **Google's MediaPipe** framework
+**Landmark Detection:** The system detects 21 key hand landmarks in real-time
 * **Vector Logic:** We engineered a depth-robust detection system by focusing on angular features. We calculate the vectors between the Wrist (Point 0), the Thumb Tip (Point 4), and the Index Finger Tip (Point 8) .
 * **Mathematics:** The angle is derived using the dot product formula, making the gesture recognition invariant to the user's distance from the camera (scale invariance) .
 
 ### Phase 3: Act (System Interfacing)
-* [cite_start]**Audio Endpoint Control:** The system interfaces with the **Windows Core Audio APIs** using the **Pycaw** library[cite: 419, 420].
-* [cite_start]**COM Interaction:** The application initializes a COM (Component Object Model) interface to communicate with the operating system's default audio endpoint (Speakers)[cite: 388, 412, 440].
+**Audio Endpoint Control:** The system interfaces with the **Windows Core Audio APIs** using the **Pycaw** library
+**COM Interaction:** The application initializes a COM (Component Object Model) interface to communicate with the operating system's default audio endpoint (Speakers)
 
 ---
 
@@ -64,8 +64,8 @@ To prevent "jitter" in the volume levels caused by micro-movements of the hand, 
 * **Impact:** This ensures the volume transitions are fluid rather than erratic, creating a polished user experience.
 
 ### 4.3. Windows Audio Integration
-[cite_start]We utilized `IAudioEndpointVolume` to control the master volume scalar directly[cite: 439, 452].
-* **Constraint:** This implementation is strictly Windows-compatible due to reliance on Windows Core Audio APIs. [cite_start]Linux (ALSA/PulseAudio) and macOS (Core Audio) are incompatible [cite: 484-486].
+We utilized `IAudioEndpointVolume` to control the master volume scalar directly
+* **Constraint:** This implementation is strictly Windows-compatible due to reliance on Windows Core Audio APIs. [cite_start]Linux (ALSA/PulseAudio) and macOS (Core Audio) are incompatible
 
 ---
 
@@ -89,14 +89,14 @@ To prevent "jitter" in the volume levels caused by micro-movements of the hand, 
 Throughout the four milestones of this project, the team gained critical insights into computer vision and system integration:
 
 * **Milestone 1 & 2: Computer Vision Fundamentals**
-    * [cite_start]We learned that an image is simply a numerical grid of pixels[cite: 91, 108].
-    * [cite_start]We mastered OpenCV basics, including reading (`cv2.imread`), displaying (`cv2.imshow`), and manipulating image matrices (NumPy) [cite: 49-51].
-    * [cite_start]We understood the importance of the coordinate system, where the origin (0,0) is the top-left corner[cite: 191, 196].
+    * We learned that an image is simply a numerical grid of pixels
+    * We mastered OpenCV basics, including reading (`cv2.imread`), displaying (`cv2.imshow`), and manipulating image matrices (NumPy)
+    * We understood the importance of the coordinate system, where the origin (0,0) is the top-left corner
 
 * **Milestone 3: Deep Learning Concepts**
-    * [cite_start]We explored how Convolutional Neural Networks (CNNs) emulate biological neurons to process visual data[cite: 265, 283].
-    * We learned that traditional linear layers are insufficient for vision; [cite_start]**Activation Functions** are required to introduce non-linearity and "unlock" the network's ability to learn complex shapes[cite: 345, 351].
+    * We explored how Convolutional Neural Networks (CNNs) emulate biological neurons to process visual data
+    * We learned that traditional linear layers are insufficient for vision; [cite_start]**Activation Functions** are required to introduce non-linearity and "unlock" the network's ability to learn complex shapes
 
 * **Milestone 4: System Integration**
-    * [cite_start]We learned that Windows uses **Audio Endpoints** to abstract hardware devices[cite: 411, 413].
-    * [cite_start]We discovered that **Pycaw** acts as a Pythonic wrapper, hiding the complexity of low-level C++ COM pointers and allowing us to control system volume with high-level commands[cite: 420, 427].
+    *We learned that Windows uses **Audio Endpoints** to abstract hardware devices
+    *We discovered that **Pycaw** acts as a Pythonic wrapper, hiding the complexity of low-level C++ COM pointers and allowing us to control system volume with high-level commands
